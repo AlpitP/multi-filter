@@ -27,18 +27,17 @@ const Table = ({ filterData, a }) => {
             {/* {Object.keys(tableData[0]).map((ele, index) => {
               return <th key={index}>{ele}</th>;
             })} */}
-            <th>No.</th>
             {a.map((ele, i) => {
               return <th key={i}>{ele}</th>;
             })}
           </tr>
         </thead>
         <tbody>
-          {data.map((ele, i) => {
-            if (condition(ele).every((ele) => ele === true)) {
+          {data.map((element, index) => {
+            if (condition(element).every((ele) => ele === true)) {
               return (
-                <tr style={{ textAlign: "center" }} key={i}>
-                  {Object.values(ele).map((ele, i) => {
+                <tr style={{ textAlign: "center" }} key={index}>
+                  {Object.values(element).map((ele, i) => {
                     return <td key={i}>{ele}</td>;
                   })}
                 </tr>

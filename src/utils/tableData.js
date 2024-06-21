@@ -41,12 +41,12 @@ export const data = [
     Type: "C",
     Active: "FALSE",
   },
-  {
-    id: 5,
-    Name: "Alpit",
-    City: "denver",
-    Category: "one",
-    Type: "A",
-    Active: "TRUE",
-  },
+  // {
+  //   id: 5,
+  //   Name: "Alpit",
+  //   City: "denver",
+  //   Category: "three",
+  //   Type: "A",
+  //   Active: "TRUE",
+  // },
 ];

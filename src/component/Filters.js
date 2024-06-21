@@ -7,7 +7,7 @@ const Filters = () => {
   const a = [];
   data.map((ele) => {
     for (let key in ele) {
-      key !== "id" && a.push(key);
+      a.push(key);
     }
     return null;
   });
@@ -58,35 +58,37 @@ const Filters = () => {
       <div style={{ display: "flex", justifyContent: "center", gap: 30 }}>
         {Array.from(new Set(a)).map((ele, i) => {
           return (
-            <div key={i}>
-              <h4 style={{ margin: 0, padding: 0 }}>{ele}</h4>
-              {ele === "Name" ? (
-                <input
-                  type="text"
-                  name={ele}
-                  value={filterData?.[0]?.Name ?? ""}
-                  onChange={(e) => changeInput(e)}
-                />
-              ) : (
-                filter[i]?.[ele]?.map((element, index) => {
-                  return (
-                    element !== undefined &&
-                    element !== "" && (
-                      <Fragment key={index}>
-                        <input
-                          type="checkbox"
-                          name={ele}
-                          value={element}
-                          onChange={(e) => onChange(e)}
-                        />
-                        <label>{element}</label>
-                        <br />
-                      </Fragment>
-                    )
-                  );
-                })
-              )}
-            </div>
+            ele !== "id" && (
+              <div key={i}>
+                <h4 style={{ margin: 0, padding: 0 }}>{ele}</h4>
+                {ele === "Name" ? (
+                  <input
+                    type="text"
+                    name={ele}
+                    value={filterData?.[0]?.Name ?? ""}
+                    onChange={(e) => changeInput(e)}
+                  />
+                ) : (
+                  filter[i]?.[ele]?.map((element, index) => {
+                    return (
+                      element !== undefined &&
+                      element !== "" && (
+                        <Fragment key={index}>
+                          <input
+                            type="checkbox"
+                            name={ele}
+                            value={element}
+                            onChange={(e) => onChange(e)}
+                          />
+                          <label>{element}</label>
+                          <br />
+                        </Fragment>
+                      )
+                    );
+                  })
+                )}
+              </div>
+            )
           );
         })}
       </div>
