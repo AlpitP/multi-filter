@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 
+const fields = [];
 const Table = ({ usersData }) => {
-  const fields = [];
-  usersData.forEach((user) => {
-    Object.keys(user).forEach(
-      (field) => !fields.includes(field) && fields.push(field)
-    );
-  });
+  useEffect(() => {
+    usersData.forEach((user) => {
+      Object.keys(user).forEach(
+        (field) => !fields.includes(field) && fields.push(field)
+      );
+    });
+  }, []);
 
-  if (usersData.length === 0) {
+  if (!usersData.length) {
     return <h2 style={{ textAlign: "center" }}>No Data Available!</h2>;
   }
 
@@ -16,15 +18,15 @@ const Table = ({ usersData }) => {
     <table>
       <thead>
         <tr>
-          {fields?.map((field, ind) => {
-            return <th key={ind}>{field.toUpperCase()}</th>;
+          {fields?.map((field, index) => {
+            return <th key={index}>{field.toUpperCase()}</th>;
           })}
         </tr>
       </thead>
 
       <tbody>
-        {usersData.map((user, ind) => (
-          <tr key={ind}>
+        {usersData.map((user, index) => (
+          <tr key={index}>
             {fields?.map((field) => (
               <td key={field}>{user?.[field]}</td>
             ))}

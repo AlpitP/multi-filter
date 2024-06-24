@@ -11,10 +11,9 @@ const usersData = [
     id: 2,
     name: "bar",
     city: "dallas",
-    category: "one",
+    category: "two",
     type: "B",
     active: "FALSE",
-    car: "a",
   },
   {
     id: 3,
@@ -32,13 +31,13 @@ const usersData = [
     type: "C",
     active: "FALSE",
   },
-  // {
-  //   id: 5,
-  //   name: "Alpit",
-  //   city: "denver",
-  //   category: "three",
-  //   type: "A",
-  //   active: "TRUE",
-  // },
+  {
+    id: 5,
+    name: "Alpit",
+    city: "denver",
+    category: "one",
+    type: "A",
+    active: "TRUE",
+  },
 ];
 export default usersData;
