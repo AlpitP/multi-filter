@@ -1,91 +1,37 @@
 import React from "react";
-import { data } from "../utils/tableData";
 
-const Table = ({ filterData, a }) => {
-  const condition = (data) => {
-    let condition = [];
-    for (let i = 0; i < a.length; i++) {
-      if ([a[i]][0] !== "Name") {
-        condition.push(filterData[0]?.[a[i]]?.includes(data?.[a[i]]) ?? true);
-      } else {
-        condition.push(
-          filterData[0]?.[a[i]]?.length > 0
-            ? data?.Name?.toLowerCase()?.includes(filterData[0]?.[a[i]])
-            : true
-        );
-      }
-    }
-    return condition;
-  };
+const Table = ({ usersData }) => {
+  const fields = [];
+  usersData.forEach((user) => {
+    Object.keys(user).forEach(
+      (field) => !fields.includes(field) && fields.push(field)
+    );
+  });
+
+  if (usersData.length === 0) {
+    return <h2 style={{ textAlign: "center" }}>No Data Available!</h2>;
+  }
 
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            {/* <th>No.</th> */}
-            {/* {Object.keys(tableData[0]).map((ele, index) => {
-              return <th key={index}>{ele}</th>;
-            })} */}
-            {a.map((ele, i) => {
-              return <th key={i}>{ele}</th>;
-            })}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((element, index) => {
-            if (condition(element).every((ele) => ele === true)) {
-              return (
-                <tr style={{ textAlign: "center" }} key={index}>
-                  {Object.values(element).map((ele, i) => {
-                    return <td key={i}>{ele}</td>;
-                  })}
-                </tr>
-              );
-            }
-            return null;
+    <table>
+      <thead>
+        <tr>
+          {fields?.map((field, ind) => {
+            return <th key={ind}>{field.toUpperCase()}</th>;
           })}
+        </tr>
+      </thead>
 
-          {/* {tableData[0].City.map((ele, i) => {
-            const data = a.reduce((acc, ele) => {
-              acc.push(tableData[0]?.[ele]?.[index - 1]);
-              return acc;
-            }, []);
-
-            const condition = () => {
-              let condition = [];
-              for (let i = 0; i < a.length; i++) {
-                if ([a[i]][0] !== "Name") {
-                  condition.push(
-                    filterData[0]?.[a[i]]?.includes(data[i]) ?? true
-                  );
-                } else {
-                  condition.push(
-                    filterData[0]?.[a[i]]?.length > 0
-                      ? data[i].toLowerCase()?.includes(filterData[0]?.[a[i]])
-                      : true
-                  );
-                }
-              }
-              return condition;
-            };
-
-            if (condition().every((ele) => ele === true)) {
-              return (
-                <tr style={{ textAlign: "center" }} key={i}>
-                  <td>{index++}</td>
-                  {data.map((ele, i) => {
-                    return <td key={i}>{ele}</td>;
-                  })}
-                </tr>
-              );
-            } else {
-              index++;
-            }
-          })} */}
-        </tbody>
-      </table>
-    </div>
+      <tbody>
+        {usersData.map((user, ind) => (
+          <tr key={ind}>
+            {fields?.map((field) => (
+              <td key={field}>{user?.[field]}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 
